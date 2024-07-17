@@ -1,10 +1,10 @@
 import { Header } from "./components/header";
-import { Post } from "./Post";
+import { Post } from "./components/Post";
+import { Sidebar } from "./components/sidebar"; // Corrigido a capitalização
 
 import styles from "./App.module.css";
 
 import "./global.css";
-import { Sidebar } from "./components/sidebar"; // Corrigido a capitalização
 
 export function App() {
   return (
