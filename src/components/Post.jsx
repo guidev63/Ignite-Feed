@@ -27,11 +27,22 @@ export function Post(props) {
           Acabei de subir mais um projeto no meu portifa. É um projeto que fiz
           no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀
         </p>
-        <p>👉 jane.design/doctorcare</p>
-        <p>#novoprojeto #nlw #rocketseat</p>
-        <p>Deixe seu feedback</p>
-        <p>Nossa, adorei amigo! Parabéns!</p>
+        <p className={styles.greenText}>👉 jane.design/doctorcare</p>
+        <p className={styles.greenText}>#novoprojeto #nlw #rocketseat</p>
       </div>
+
+      <form className={styles.commentForm}>
+       <strong>Deixe seu feedback</strong>
+
+
+       <textarea 
+       placeholder="Deixe um comentário"
+       />
+   <footer>
+   <button type="submit">Publicar</button>
+
+   </footer>
+      </form>
     </article>
   );
 }
