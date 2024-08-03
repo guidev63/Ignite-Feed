@@ -6,6 +6,43 @@ import styles from "./App.module.css";
 
 import "./global.css";
 
+import { Avatar } from "./components/Avatar";
+
+
+const posts =[
+{
+ id: 1,
+ author:{
+  AvatarUrl:'https://github.com/diego3g.png',
+  name: 'Diego Fernandes',
+  role:'CTO @ Rocketseat'
+ },
+ content: [
+  { type: 'paragraph', content: 'Fala galera 👋' },
+  { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀'},
+  {type:'Link', content:'jane.design/doctorcare'},
+
+],
+publisheldAt: new Date('2022-05-03 20:00:00'),
+},
+{
+ id: 2,
+ author:{
+  AvatarUrl:'https://github.com/maykbrito.png',
+  name: 'Mayke  Brito',
+  role:'Educator @ Rocketseat'
+ },
+ content: [
+  { type: 'paragraph', content: 'Fala galera 👋' },
+  { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀'},
+  {type:'Link', content:'jane.design/doctorcare'},
+
+],
+publisheldAt: new Date('2022-05-10 20:00:00'),
+},
+];
+
+ 
 export function App() {
   return (
     <div>
@@ -13,11 +50,15 @@ export function App() {
       <div className={styles.wrapper}>
         <Sidebar />
         <main>
-          <Post
-            author="Diego Fernandes"
-            content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum, veritatis ipsam. Temporibus quos tenetur animi voluptatem, dolores quaerat, praesentium, laudantium vero eum dolor ratione. Ab voluptates repellat quisquam voluptatibus recusandae."
+         {posts.map(post =>{
+         return (
+          <Post 
+          author={post.author}
+            content={post.content}
+            publisheldAt={post.publisheldAt}
           />
-          <Post author="Gabriel Buzzi" content="um novo post muito legal" />
+         )
+         })}
         </main>
       </div>
     </div>
