@@ -1,18 +1,30 @@
+
+import { format } from "date-fns";  
+
 import styles from "./Post.module.css";
 import { Comment } from './Comment';
 import { Avatar } from "./Avatar";
-
-// author:{avatar_url:"", name:"" , role:"" }
-//
+ 
 
 
-export function Post({author, publishedAt}) {
+
+const Comments = [
+ 1, 
+ 2,
+ 3,
+
+];
+
+
+export function Post({author, publishedAt,content}) {
   const publishedDateFormatted = new Intl.DateTimeFormat('pt-BR',{
     day:'2-digit',
     month:'long',
     hour:'2-digit',
     minute:'2-digit',
+
   }).format(publishedAt);
+
   return (
     <article className={styles.post}>
       <header>
@@ -31,6 +43,13 @@ export function Post({author, publishedAt}) {
       </header>
 
       <div className={styles.content}>
+        {content.map(line =>{
+          if (line.type === 'pharagraph'){
+            return <p>{line.content}</p>;
+          } else if(line.type === 'link'){
+            return <p> <a href="#">{line.content}</a></p>;
+          }
+        })}
         <p>Fala galeraa 👋</p>
         <p>
         Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀
