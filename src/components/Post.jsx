@@ -1,58 +1,46 @@
-
 import { format } from "date-fns";  
 
 import styles from "./Post.module.css";
 import { Comment } from './Comment';
 import { Avatar } from "./Avatar";
- 
 
+const Comments = [1, 2, 3];
 
-
-const Comments = [
- 1, 
- 2,
- 3,
-
-];
-
-
-export function Post({author, publishedAt,content}) {
-  const publishedDateFormatted = new Intl.DateTimeFormat('pt-BR',{
-    day:'2-digit',
-    month:'long',
-    hour:'2-digit',
-    minute:'2-digit',
-
+export function Post({ author, publishedAt, content }) {
+  const publishedDateFormatted = new Intl.DateTimeFormat('pt-BR', {
+    day: '2-digit',
+    month: 'long',
+    hour: '2-digit',
+    minute: '2-digit',
   }).format(publishedAt);
 
   return (
     <article className={styles.post}>
       <header>
         <div className={styles.author}>
-          <Avatar hasBorder={true}  src={author.AvatarUrl} />
+          <Avatar hasBorder={true} src={author.avatarUrl} />
           <div className={styles.authorInfo}>
             <strong>{author.name}</strong>
             <span>{author.role}</span>
           </div>
         </div>
 
-
         <time title="08 de maio às 08:13h" dateTime="2022-05-11T08:13:30">
-           {publishedDateFormatted}
+          {publishedDateFormatted}
         </time>
       </header>
 
       <div className={styles.content}>
-        {content.map(line =>{
-          if (line.type === 'pharagraph'){
-            return <p>{line.content}</p>;
-          } else if(line.type === 'link'){
-            return <p> <a href="#">{line.content}</a></p>;
+        {content.map((line) => {
+          if (line.type === 'paragraph') {
+            return <p key={line.content}>{line.content}</p>;
+          } else if (line.type === 'link') {
+            return <p key={line.content}><a href="#">{line.content}</a></p>;
           }
         })}
-        <p>Fala galeraa 👋</p>
+        <p> Fala Galeraa 👋</p>
         <p>
-        Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀
+          Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀
         </p>
         <p className={styles.greenText}>👉 jane.design/doctorcare</p>
         <p className={styles.greenText}>#novoprojeto #nlw #rocketseat</p>
@@ -69,9 +57,9 @@ export function Post({author, publishedAt,content}) {
       </form>
 
       <div className={styles.commentList}>
-        <Comment />
-        <Comment />
-        <Comment />
+        {Comments.map((comment, index) => {
+          return <Comment key={index} />;
+        })}
       </div>
     </article>
   );
