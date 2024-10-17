@@ -3,16 +3,31 @@ import { format } from "date-fns";
 import styles from "./Post.module.css";
 import { Comment } from './Comment';
 import { Avatar } from "./Avatar";
+import { useState } from "react";
 
-const Comments = [1, 2, 3];
 
+
+
+
+// estado = variáveis   que eu quero  que o componente  monitore 
 export function Post({ author, publishedAt, content }) {
+   
+const [Comments,setComments] = useState([1, 2,])
+
   const publishedDateFormatted = new Intl.DateTimeFormat('pt-BR', {
     day: '2-digit',
     month: 'long',
     hour: '2-digit',
     minute: '2-digit',
   }).format(publishedAt);
+
+ function handleCreateNewComment(){
+
+  event.preventDefault()
+
+  setComments([...Comments, Comments.length + 1]);
+
+ }
 
   return (
     <article className={styles.post}>
@@ -46,12 +61,12 @@ export function Post({ author, publishedAt, content }) {
         <p className={styles.greenText}>#novoprojeto #nlw #rocketseat</p>
       </div>
 
-      <form className={styles.commentForm}>
+      <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
         <textarea 
           placeholder="Deixe um comentário"
         />
-        <footer>
+        <footer> 
           <button type="submit">Publicar</button>
         </footer>
       </form>

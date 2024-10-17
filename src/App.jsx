@@ -13,7 +13,7 @@ const posts =[
 {
  id: 1,
  author:{
-  AvatarUrl:'https://github.com/diego3g.png',
+  avatarUrl:'https://github.com/diego3g.png',
   name: 'Diego Fernandes',
   role:'CTO @ Rocketseat'
  },
@@ -28,7 +28,7 @@ publisheldAt: new Date('2022-05-03 20:00:00'),
 {
  id: 2,
  author:{
-  AvatarUrl:'https://github.com/maykbrito.png',
+  avatarUrl:'https://github.com/maykbrito.png',
   name: 'Mayke  Brito',
   role:'Educator @ Rocketseat'
  },
@@ -43,16 +43,18 @@ publisheldAt: new Date('2022-05-10 20:00:00'),
 ];
 
  
-export function App() {
+export function App() { 
   return (
     <div>
       <Header />
       <div className={styles.wrapper}>
         <Sidebar />
         <main>
+          
          {posts.map(post =>{
          return (
           <Post 
+          
           author={post.author}
             content={post.content}
             publisheldAt={post.publisheldAt}
