@@ -1,4 +1,4 @@
-import { format } from "date-fns";  
+import { format, set } from "date-fns";  
 
 import styles from "./Post.module.css";
 import { Comment } from './Comment';
@@ -12,7 +12,13 @@ import { useState } from "react";
 // estado = variáveis   que eu quero  que o componente  monitore 
 export function Post({ author, publishedAt, content }) {
    
-const [Comments,setComments] = useState([1, 2,])
+const [Comments,setComments] = useState([
+  
+    'Post muito Bacana,hein?!'
+
+])
+   const [newCommentText,setNewCommentText] = useState ('')
+
 
   const publishedDateFormatted = new Intl.DateTimeFormat('pt-BR', {
     day: '2-digit',
@@ -25,9 +31,15 @@ const [Comments,setComments] = useState([1, 2,])
 
   event.preventDefault()
 
-  setComments([...Comments, Comments.length + 1]);
+  const newCommentText = event.target.comment.value
 
+console.log()
+  setComments([...Comments, newCommentText]);
+   setNewCommentText('');
  }
+  function handleCreateNewCommentChange(){
+    setNewCommentText(event.target.value);
+  }
 
   return (
     <article className={styles.post}>
@@ -64,7 +76,11 @@ const [Comments,setComments] = useState([1, 2,])
       <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
         <strong>Deixe seu feedback</strong>
         <textarea 
+          name="comment"
           placeholder="Deixe um comentário"
+          value={newCommentText}
+          onChange={handleCreateNewCommentChange}
+
         />
         <footer> 
           <button type="submit">Publicar</button>
@@ -73,7 +89,7 @@ const [Comments,setComments] = useState([1, 2,])
 
       <div className={styles.commentList}>
         {Comments.map((comment, index) => {
-          return <Comment key={index} />;
+          return <Comment  content ={comment}  />
         })}
       </div>
     </article>
